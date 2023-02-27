@@ -1,0 +1,22 @@
+.form-container{
+    margin-bottom: 1.5rem;
+    width:  300px;
+}
+
+.form-container input{
+    display: block;
+    margin-bottom: 1rem;
+}
+table,  th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td, th{
+    padding: 1rem;
+}
+
+.group-table{
+    visibility: hidden;
+    margin-top: 1.5rem;
+}
