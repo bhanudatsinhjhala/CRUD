@@ -12,12 +12,16 @@ let showGroupTable = document.querySelector(".group-table");
 
 let tableBody = document.querySelector(".table-body");
 
+let searchBox = document.querySelector(".search-input");
+
 
 showRecord();
 
 createRecordBtn.addEventListener("click", onFormSubmit);
 
 showGroupBtn.addEventListener("click", showGroup);
+
+searchBox.addEventListener("change", searchData);
 
 function onFormSubmit(e) {
     e.preventDefault();
@@ -56,8 +60,7 @@ function createRecord(product, price, category) {
     }
 }
 
-function showRecord() {
-    let records = JSON.parse(sessionStorage.getItem("records"));
+function showRecord(records = JSON.parse(sessionStorage.getItem("records"))) {
     tableBody.innerHTML = "";
     records.forEach((record) => {
         let editClass = `edit-btn-${record.id}`;
@@ -171,4 +174,22 @@ function calcGroupPrices() {
     });
 
     return groups;
+}
+
+function searchData() {
+    let searchInputValue = searchBox.value;
+    console.log("search works ===>", searchInputValue);
+    if (searchInputValue !== "") {
+
+        let records = JSON.parse(sessionStorage.getItem('records'));
+
+        let searchResult = records.filter((record) => record.product.match(searchInputValue));
+        searchResult = searchResult.concat(records.filter((record) => record.price.toString().match(searchInputValue)));
+        searchResult = searchResult.concat(records.filter((record) => record.category.match(searchInputValue)));
+
+        console.log(searchResult);
+        showRecord(searchResult);
+    } else {
+        showRecord();
+    }
 }
