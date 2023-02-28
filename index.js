@@ -14,8 +14,18 @@ let tableBody = document.querySelector(".table-body");
 
 let searchBox = document.querySelector(".search-input");
 
+let sortingArrowId = document.querySelector(".arrows-id");
+let sortingArrowCategory = document.querySelector(".arrows-category");
+let sortingArrowProduct = document.querySelector(".arrows-product");
+let sortingArrowPrice = document.querySelector(".arrows-price");
 
-showRecord();
+// console.log(sessionStorage.getItem('records') ===null);
+if(sessionStorage.getItem('records') ===null){
+    sessionStorage.setItem("records",JSON.stringify([]));
+    showRecord();
+}else{
+    showRecord();
+}
 
 createRecordBtn.addEventListener("click", onFormSubmit);
 
@@ -54,6 +64,7 @@ function createRecord(product, price, category) {
             category,
         });
 
+        // console.log("records ===>", records);
         sessionStorage.setItem("records", JSON.stringify(records));
     } else {
         alert("Please do not enter duplicate product");
@@ -192,4 +203,52 @@ function searchData() {
     } else {
         showRecord();
     }
+}
+
+function sortTable(header){
+    let order= "asc";
+    let sortColumn={
+        id: sortingArrowId,
+        category: sortingArrowCategory,
+        product: sortingArrowProduct,
+        price: sortingArrowPrice
+    }
+    console.log(sortColumn[header].value);
+    alert(`sorting btn of ${header} clicked`);
+    // console.log("btn value ===>", sortingArrows.value);
+    if(sortColumn[header].value === "asc"){
+        order= "asc";
+        sortColumn[header].value= "desc";   
+        sortArray(order);
+    }else{
+        order="desc";
+        sortColumn[header].value= "asc"
+        sortArray(order);
+    }
+    function sortArray(order){
+    let records= JSON.parse(sessionStorage.getItem('records'));
+
+        records=records.sort((a,b)=>{
+            if(order==="asc"){
+                    if ( a[header] < b[header] ){
+                      return -1;
+                    }
+                    if ( a[header] > b[header] ){
+                      return 1;
+                    }
+                    return 0;
+            }else{
+                if ( a[header] < b[header] ){
+                    return 1;
+                  }
+                  if ( a[header] > b[header] ){
+                    return -1;
+                  }
+                  return 0;
+            }
+        });
+        showRecord(records);
+        console.log("records ===>", records);
+    }
+
 }

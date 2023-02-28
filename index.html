@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>CRUD-Searching-Sorting</title>
 </head>
 
 <body>
@@ -30,15 +30,19 @@
                 <tr>
                     <th>
                         Id
+                        <input type="button" class="arrows arrows-id" value="asc" onclick="sortTable('id')">
                     </th>
                     <th>
                         Category
+                        <input type="button" class="arrows arrows-category" value="asc" onclick="sortTable('category')">
                     </th>
                     <th>
                         Product
+                        <input type="button" class="arrows arrows-product" value="asc" onclick="sortTable('product')">
                     </th>
                     <th>
                         Price
+                        <input type="button" class="arrows arrows-price" value="asc" onclick="sortTable('price')">
                     </th>
                     <th>
                         Actions
