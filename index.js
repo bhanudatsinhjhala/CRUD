@@ -19,6 +19,7 @@ let sortingArrowCategory = document.querySelector(".arrows-category");
 let sortingArrowProduct = document.querySelector(".arrows-product");
 let sortingArrowPrice = document.querySelector(".arrows-price");
 
+sessionStorage.setItem('records', JSON.stringify([]));
 // console.log(sessionStorage.getItem('records') ===null);
 if(sessionStorage.getItem('records') ===null){
     sessionStorage.setItem("records",JSON.stringify([]));
