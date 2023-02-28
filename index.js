@@ -72,6 +72,8 @@ function createRecord(product, price, category) {
     }
 }
 
+
+
 function showRecord(records = JSON.parse(sessionStorage.getItem("records"))) {
     tableBody.innerHTML = "";
     records.forEach((record) => {
