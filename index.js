@@ -36,9 +36,9 @@ searchBox.addEventListener("change", searchData);
 
 function onFormSubmit(e) {
     e.preventDefault();
-    category = categoryInput.value;
-    product = productInput.value;
-    price = priceInput.value;
+    let category = categoryInput.value;
+    let product = productInput.value;
+    let price = priceInput.value;
     if (category && product && price) {
         alert(`${category} , ${price} , ${product}`);
         createRecord(product.toLowerCase(), parseInt(price), category.toLowerCase());
