@@ -11,15 +11,15 @@
 
 <body>
     <div class="form-container">
+        <input type="button" name="showGroup" value="Show Group" class="show-group" onclick="showGroup()" />
         <form>
-            <input type="button" name="showGroup" value="Show Group" class="show-group" />
             <label>Product</label>
             <input type="text" name="product" class="product-input" value="" />
             <label>Price</label>
             <input type="number" name="price" class="price-input" value="" />
             <label>Category</label>
             <input type="text" name="category" class="category-input" value="" />
-            <input type="submit" name="createRecord" class="create-record" value="Create Record" />
+            <input type="submit" name="createRecord" class="create-record" value="Create Record" onclick="onDataInput(event)" />
         </form>
         <label>Search</label>   
         <input type="search" name="searchBox" class="search-input" />
