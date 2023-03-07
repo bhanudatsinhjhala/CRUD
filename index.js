@@ -151,14 +151,12 @@ function calcGroupPrices() {
   let groups = [];
   records.forEach((record) => {
     let index = groups.findIndex((group) => group.category === record.category);
-    if (index === -1) {
-      groups.push({
+    if (index === -1)
+      return groups.push({
         id: groups.length + 1,
         category: record.category,
         price: parseInt(record.price),
       });
-      return;
-    }
     groups[index].price += parseInt(record.price);
   });
   return groups;
@@ -173,12 +171,12 @@ function searchData() {
   let records = getRecords();
   let searchResult;
   if (isNaN(searchInputValue)) {
-    searchResult = records.filter((record) =>
-      record.product.match(searchInputValue)
-    );
-    searchResult = searchResult.concat(
-      records.filter((record) => record.category.match(searchInputValue))
-    );
+    searchResult = records.filter((record) => {
+      if (record.product.match(searchInputValue))
+        return record.product.match(searchInputValue);
+      else if (record.category.match(searchInputValue))
+        return record.category.match(searchInputValue);
+    });
     showRecord(searchResult);
     return;
   }
@@ -189,6 +187,7 @@ function searchData() {
 }
 
 function sortTable(header) {
+  alert(header);
   let sortColumn = {
     id: sortingArrowId,
     category: sortingArrowCategory,
@@ -196,23 +195,23 @@ function sortTable(header) {
     price: sortingArrowPrice,
   };
   console.log(sortColumn[header].value);
-  sortArray(sortColumn[header].value);
+  sortArray(sortColumn[header].value, header);
   if (sortColumn[header].value === "asc")
     return (sortColumn[header].value = "desc");
   sortColumn[header].value = "asc";
-
-  function sortArray(order) {
-    let records = getRecords();
-    records.sort((a, b) => {
-      if (order === "asc") {
-        if (a[header] < b[header]) return -1;
-        if (a[header] > b[header]) return 1;
-        return 0;
-      }
-      if (a[header] < b[header]) return 1;
-      if (a[header] > b[header]) return -1;
+}
+function sortArray(order, header) {
+  alert(header);
+  let records = getRecords();
+  records.sort((a, b) => {
+    if (order === "asc") {
+      if (a[header] < b[header]) return -1;
+      if (a[header] > b[header]) return 1;
       return 0;
-    });
-    showRecord(records);
-  }
+    }
+    if (a[header] < b[header]) return 1;
+    if (a[header] > b[header]) return -1;
+    return 0;
+  });
+  showRecord(records);
 }
