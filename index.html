@@ -1,77 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>CRUD-Searching-Sorting</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="form-container">
-        <input type="button" name="showGroup" value="Show Group" class="show-group" onclick="showGroup()" />
-        <form>
-            <label>Product</label>
-            <input type="text" name="product" class="product-input" value="" />
-            <label>Price</label>
-            <input type="number" name="price" class="price-input" value="" />
-            <label>Category</label>
-            <input type="text" name="category" class="category-input" value="" />
-            <input type="submit" name="createRecord" class="create-record" value="Create Record" onclick="onDataInput(event)" />
-        </form>
-        <label>Search</label>   
-        <input type="search" name="searchBox" class="search-input" />
+      <input
+        type="button"
+        name="showGroup"
+        value="Show Group"
+        class="show-group"
+        onclick="showGroup()"
+      />
+      <form>
+        <label>Product</label>
+        <input type="text" name="product" class="product-input" value="" />
+        <label>Price</label>
+        <input
+          type="number"
+          name="price"
+          class="price-input"
+          value=""
+          pattern="[0-9]"
+        />
+        <label>Category</label>
+        <input type="text" name="category" class="category-input" value="" />
+        <input
+          type="submit"
+          name="createRecord"
+          class="create-record"
+          value="Create Record"
+          onclick="onDataInput(event)"
+        />
+      </form>
+      <label>Search</label>
+      <input type="search" name="searchBox" class="search-input" />
     </div>
 
     <div class="tabel-container">
-        <table class="product-table">
-            <thead>
-                <tr>
-                    <th>
-                        Id
-                        <input type="button" class="arrows arrows-id" value="asc" onclick="sortTable('id')">
-                    </th>
-                    <th>
-                        Category
-                        <input type="button" class="arrows arrows-category" value="asc" onclick="sortTable('category')">
-                    </th>
-                    <th>
-                        Product
-                        <input type="button" class="arrows arrows-product" value="asc" onclick="sortTable('product')">
-                    </th>
-                    <th>
-                        Price
-                        <input type="button" class="arrows arrows-price" value="asc" onclick="sortTable('price')">
-                    </th>
-                    <th>
-                        Actions
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="table-body">
-            </tbody>
-        </table>
-        <table class="group-table">
-            <thead>
-                <tr>
-                    <th>
-                        Id
-                    </th>
-                    <th>
-                        Category
-                    </th>
-                    <th>
-                        Price
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="group-table-body">
-            </tbody>
-        </table>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>
+              Id
+              <input
+                type="button"
+                class="arrows arrows-id"
+                value="asc"
+                onclick="sortTable('id')"
+              />
+            </th>
+            <th>
+              Category
+              <input
+                type="button"
+                class="arrows arrows-category"
+                value="asc"
+                onclick="sortTable('category')"
+              />
+            </th>
+            <th>
+              Product
+              <input
+                type="button"
+                class="arrows arrows-product"
+                value="asc"
+                onclick="sortTable('product')"
+              />
+            </th>
+            <th>
+              Price
+              <input
+                type="button"
+                class="arrows arrows-price"
+                value="asc"
+                onclick="sortTable('price')"
+              />
+            </th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-body"></tbody>
+      </table>
+      <table class="group-table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Category</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody class="group-table-body"></tbody>
+      </table>
     </div>
     <script src="index.js"></script>
-</body>
-
+  </body>
 </html>

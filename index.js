@@ -14,7 +14,15 @@ if (sessionStorage.getItem("records") === null) {
   sessionStorage.setItem("records", JSON.stringify([]));
 }
 showRecord();
+const invalidInput = ["e", "E", "+", "-"];
 
+priceInput.addEventListener("keydown", (event) => {
+  // alert(event.key);
+  if (invalidInput.includes(event.key)) {
+    event.preventDefault();
+    alert("Please enter only Numbers");
+  }
+});
 function getRecords() {
   return JSON.parse(sessionStorage.getItem("records"));
 }
@@ -25,6 +33,7 @@ function onDataInput(e) {
   let category = categoryInput.value.toLowerCase();
   let product = productInput.value.toLowerCase();
   let price = parseInt(priceInput.value);
+  console.log(price);
   if (!category || !product || !price) {
     alert("You can not leave any field empty or null");
     return;
